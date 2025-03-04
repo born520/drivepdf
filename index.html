@@ -3,9 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title id="dynamic-title"로드 중...</title>
+    <title id="dynamic-title">로드 중...</title>
     <meta property="og:title" id="og-title" content="로드 중...">
-    <meta property="og:description" id="og-description" content="로드 중.">
+    <meta property="og:description" id="og-description" content="로드 중...">
     <meta property="og:type" content="website">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
     <style>
@@ -56,7 +56,7 @@
         async function loadPDF() {
             try {
                 const fileId = '11GX2RXyotcHgOO6RVZbZYU3F-hIpmTzL';
-                const apiKey = 'AIzaSyBghbCPF8ROYTJquZnEy01_sCl2AFmplM0'; // 여기에 Google Drive API 키 입력
+                const apiKey = 'AIzaSyBghbCPF8ROYTJquZnEy01_sCl2AFmplM0'; //여기에 api 키를 넣어주세요. 보안상 서버측에서 api키를 관리하는것을 추천드립니다.
                 const driveApiUrl = `https://www.googleapis.com/drive/v3/files/${fileId}?alt=media&key=${apiKey}`;
 
                 loadingElement.textContent = "로드 중...";
@@ -78,8 +78,8 @@
                 const metadata = await pdfDoc.getMetadata();
                 console.log('PDF Metadata:', metadata);
 
-                const title = metadata.info.Title || 'Centara Grand Hotel Osaka 2025년 5,6월 요금표';
-                const description = metadata.info.Subject || 'Google Drive에서 가져온 PDF 문서입니다.';
+                const title = metadata.info?.Title || 'Centara Grand Hotel Osaka 2025년 5,6월 요금표';
+                const description = metadata.info?.Subject || 'Google Drive에서 가져온 PDF 문서입니다.';
                 document.getElementById('dynamic-title').textContent = title;
                 document.getElementById('og-title').content = title;
                 document.getElementById('og-description').content = description;
@@ -95,26 +95,7 @@
             }
         }
 
-        // 초기 로드
         loadPDF();
-
-        // 스크롤 이벤트 처리
-        document.addEventListener('wheel', (e) => {
-            e.preventDefault();
-            pdfContainer.scrollTop += e.deltaY;
-        }, { passive: false });
-
-        let touchStartY = 0;
-        document.addEventListener('touchstart', (e) => {
-            touchStartY = e.touches[0].clientY;
-        }, { passive: true });
-
-        document.addEventListener('touchmove', (e) => {
-            const touchY = e.touches[0].clientY;
-            const deltaY = touchStartY - touchY;
-            pdfContainer.scrollTop += deltaY;
-            touchStartY = touchY;
-        }, { passive: true });
     </script>
 </body>
-</html>`
+</html>
