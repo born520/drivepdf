@@ -3,9 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title id="dynamic-title">PDF 로드 중...</title>
-    <meta property="og:title" id="og-title" content="PDF 로드 중...">
-    <meta property="og:description" id="og-description" content="PDF 문서를 렌더링하는 중입니다.">
+    <title id="dynamic-title"로드 중...</title>
+    <meta property="og:title" id="og-title" content="로드 중...">
+    <meta property="og:description" id="og-description" content="로드 중.">
     <meta property="og:type" content="website">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
     <style>
@@ -24,7 +24,7 @@
 <body>
     <div id="outer-container">
         <div id="pdf-container">
-            <div id="loading">PDF를 로드하는 중입니다...</div>
+            <div id="loading">로드하는 중입니다...</div>
         </div>
     </div>
 
@@ -59,7 +59,7 @@
                 const apiKey = 'AIzaSyBghbCPF8ROYTJquZnEy01_sCl2AFmplM0'; // 여기에 Google Drive API 키 입력
                 const driveApiUrl = `https://www.googleapis.com/drive/v3/files/${fileId}?alt=media&key=${apiKey}`;
 
-                loadingElement.textContent = "PDF 로드 중...";
+                loadingElement.textContent = "로드 중...";
                 console.log('Fetching PDF from:', driveApiUrl);
 
                 const response = await fetch(driveApiUrl);
@@ -90,7 +90,7 @@
                     await renderPage(pdfDoc, pageNum);
                 }
             } catch (error) {
-                console.error('PDF 로딩 오류:', error);
+                console.error('로딩 오류:', error);
                 loadingElement.textContent = `문서를 불러올 수 없습니다: ${error.message}`;
             }
         }
