@@ -71,7 +71,7 @@
                 const blobUrl = URL.createObjectURL(pdfBlob);
                 console.log('PDF Blob created:', blobUrl);
 
-                loadingElement.textContent = "PDF 렌더링 중...";
+                loadingElement.textContent = "렌더링 중...";
 
                 const loadingTask = pdfjsLib.getDocument(blobUrl);
                 const pdfDoc = await loadingTask.promise;
